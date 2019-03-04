@@ -1,0 +1,198 @@
+
+imagepath = 'F:\Digital Image Processing\work\The first\lena.bmp'; %确定所选取图片
+A = imread(imagepath);%读取图片
+figure(1)
+imshow(A)
+title('256灰度级');
+[wide,height]=size(A);%获取原图尺寸
+img128=zeros(wide,height);%新建预期灰度为128的空白图片
+for i=1:wide
+    for j=1:height
+        img128(i,j)=floor(A(i,j)/2);
+    end
+end
+figure(2)
+imshow(uint8(img128),[0,127])
+title('128灰度级');
+img64=zeros(wide,height);%新建预期灰度为64的空白图片
+for i=1:wide
+    for j=1:height
+        img64(i,j)=floor(A(i,j)/4);
+    end
+end
+figure(3)
+imshow(uint8(img64),[0,63])
+title('64灰度级');
+img32=zeros(wide,height);%新建预期灰度为32的空白图片
+for i=1:wide
+    for j=1:height
+        img32(i,j)=floor(A(i,j)/8);
+    end
+end
+figure(4)
+imshow(uint8(img32),[0,31])
+title('32灰度级');
+img16=zeros(wide,height);%新建预期灰度为16的空白图片
+for i=1:wide
+    for j=1:height
+        img16(i,j)=floor(A(i,j)/16);
+    end
+end
+figure(5)
+imshow(uint8(img16),[0,15])
+title('16灰度级');
+img8=zeros(wide,height);%新建预期灰度为8的空白图片
+for i=1:wide
+    for j=1:height
+        img8(i,j)=floor(A(i,j)/32);
+    end
+end
+figure(6)
+imshow(uint8(img8),[0,7])
+title('8灰度级');
+img4=zeros(wide,height);%新建预期灰度为4的空白图片
+for i=1:wide
+    for j=1:height
+        img4(i,j)=floor(A(i,j)/64);
+    end
+end
+figure(7)
+imshow(uint8(img4),[0,3])
+title('4灰度级');
+img2=zeros(wide,height);%新建预期灰度为2的空白图片
+for i=1:wide
+    for j=1:height
+        img2(i,j)=floor(A(i,j)/128);
+    end
+end
+figure(8)
+imshow(uint8(img2),[0,1])
+title('2灰度级');
+
+
+
+
+
+imagepath = 'F:\Digital Image Processing\work\The first\lena.bmp'; %确定所选取图片
+A = imread(imagepath);%读取图片
+mean_value=mean2(A)
+variance=std2(A)*std2(A)
+
+
+
+
+
+imagepath = 'F:\Digital Image Processing\work\The first\lena.bmp'; %确定所选取图片
+A = imread(imagepath);%读取图片
+figure(1)
+imshow(A)
+title('原始图像');
+nearest_zoom=imresize(A,[2048 2048],'nearest');%近邻插值法放大
+figure(2)
+imshow(nearest_zoom)
+title('近邻插值法放大');
+bilinear_zoom=imresize(A,[2048,2048],'bilinear');%双线性插值法放大
+figure(3)
+imshow(bilinear_zoom)
+title('双线性插值法放大');
+bicubic_zoom=imresize(A,[2048,2048],'bicubic');%双三次插值法放大
+figure(4)
+imshow(bicubic_zoom)
+title('双三次插值法放大');
+
+
+
+
+
+imagepath = 'F:\Digital Image Processing\work\The first\lena.bmp'; %确定所选取图片
+lena = imread(imagepath);%读取图片
+figure(1)
+imshow(lena)
+title('lena');
+
+transform = maketform('affine',[1 1.5 0;0 1 0;0 0 1]);%水平shear变换
+shear_lena = imtransform(lena,transform);%对lena图像进行水平shear变换
+nearest_shear_lena = imresize(shear_lena,[2048 2048],'nearest');%对变换后的lena图像进行近邻插值法zoom
+figure(2)
+imshow(nearest_shear_lena)
+title('nearest-shear-lena');
+
+bilinear_shear_lena = imresize(shear_lena,[2048 2048],'bilinear');%对变换后的lena图像进行双线性插值法zoom
+figure(3)
+imshow(bilinear_shear_lena)
+title('bilinear-shear-lena');
+
+bicubic_shear_lena = imresize(shear_lena,[2048 2048],'bicubic');%对变换后的lena图像进行双三次插值法zoom
+figure(4)
+imshow(bicubic_shear_lena)
+title('bicubic-shear-lena');
+
+imagepath = 'F:\Digital Image Processing\work\The first\elain1.bmp'
+elain = imread(imagepath);
+figure(5)
+imshow(elain)
+title('elain');
+
+shear_elain = imtransform(elain,transform);
+nearest_shear_elain = imresize(shear_elain,[2048 2048],'nearest');
+figure(6)
+imshow(nearest_shear_elain)
+title('nearest-shear-elain');
+
+bilinear_shear_elain = imresize(shear_elain,[2048 2048],'bilinear');
+figure(7)
+imshow(bilinear_shear_elain)
+title('bilinear-shear-elain');
+
+bicubic_shear_elain = imresize(shear_elain,[2048 2048],'bicubic');
+figure(8)
+imshow(bicubic_shear_elain)
+title('bicubic-shear-elain');
+
+
+
+
+
+imagepath = 'F:\Digital Image Processing\work\The first\lena.bmp'; %确定所选取图片
+lena = imread(imagepath);%读取图片
+figure(1)
+imshow(lena)
+title('lena');
+
+rotate_lena = imrotate(lena,30);%对lena图像进行旋转变换
+nearest_rotate_lena = imresize(rotate_lena,[2048 2048],'nearest');%对变换后的lena图像进行近邻插值法zoom
+figure(2)
+imshow(nearest_rotate_lena)
+title('nearest-rotate-lena');
+
+bilinear_rotate_lena = imresize(rotate_lena,[2048 2048],'bilinear');%对变换后的lena图像进行双线性插值法zoom
+figure(3)
+imshow(bilinear_rotate_lena)
+title('bilinear-rotate-lena');
+
+bicubic_rotate_lena = imresize(rotate_lena,[2048 2048],'bicubic');%对变换后的lena图像进行双三次插值法zoom
+figure(4)
+imshow(bicubic_rotate_lena)
+title('bicubic-rotate-lena');
+
+imagepath = 'F:\Digital Image Processing\work\The first\elain1.bmp'
+elain = imread(imagepath);
+figure(5)
+imshow(elain)
+title('elain');
+
+rotate_elain = imrotate(elain,30);
+nearest_rotate_elain = imresize(rotate_elain,[2048 2048],'nearest');
+figure(6)
+imshow(nearest_rotate_elain)
+title('nearest-rotate-elain');
+
+bilinear_rotate_elain = imresize(rotate_elain,[2048 2048],'bilinear');
+figure(7)
+imshow(bilinear_rotate_elain)
+title('bilinear-rotate-elain');
+
+bicubic_rotate_elain = imresize(rotate_elain,[2048 2048],'bicubic');
+figure(8)
+imshow(bicubic_rotate_elain)
+title('bicubic-rotate-elain');
